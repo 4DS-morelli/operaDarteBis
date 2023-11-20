@@ -2,7 +2,9 @@ class Quadro extends OperaDarte {
     private double altezza;
     private double larghezza;
 
-    public Quadro(String titolo, String artista, double altezza, double larghezza) throws Exception{
+    private Cornice c1;
+
+    public Quadro(String titolo, String artista, double altezza, double larghezza, double altezzaC1, double larghezzaC1, double spessoreC1) throws Exception{
         super(titolo, artista);
         if (altezza<=0){
             throw new Exception("Inserire altezza positiva\n");
@@ -10,13 +12,14 @@ class Quadro extends OperaDarte {
         if (larghezza<=0){
             throw new Exception("Inserire larghezza positiva\n");
         }
+        c1=new Cornice(altezzaC1, larghezzaC1, spessoreC1);
         this.altezza = altezza;
         this.larghezza = larghezza;
     }
 
     @Override
     public double calcolaIngombro() {
-        return altezza * larghezza;
+        return altezza * larghezza+ c1.ingombro();
     }
 
     public double getAltezza() {

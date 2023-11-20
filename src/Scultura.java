@@ -2,8 +2,9 @@ class Scultura extends OperaDarte {
     private double altezza;
     private double larghezza;
     private double profondita;
+    private Supporto s1;
 
-    public Scultura(String titolo, String artista, double altezza, double larghezza, double profondita) throws Exception{
+    public Scultura(String titolo, String artista, double altezza, double larghezza, double profondita, double altezzaS1, double larghezzaS1, double profonditaS1 ) throws Exception{
         super(titolo, artista);
         if (altezza<=0){
             throw new Exception("Inserire altezza positiva\n");
@@ -14,6 +15,7 @@ class Scultura extends OperaDarte {
         if (profondita<=0){
             throw new Exception("Inserire profondità positiva\n");
         }
+        s1= new Supporto(altezzaS1, larghezzaS1, profonditaS1);
         this.altezza = altezza;
         this.larghezza = larghezza;
         this.profondita = profondita;
@@ -21,7 +23,7 @@ class Scultura extends OperaDarte {
 
     @Override
     public double calcolaIngombro() {
-        return altezza * larghezza * profondita;
+        return altezza * larghezza * profondita+ s1.ingombro();
     }
 
     public double getAltezza() {
